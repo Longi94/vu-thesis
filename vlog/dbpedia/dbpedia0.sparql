@@ -1,0 +1,7 @@
+PREFIX property: <http://dbpedia.org/property/>
+PREFIX resource: <http://dbpedia.org/resource/>
+
+SELECT ?x
+WHERE {
+  ?x property:timezone resource:Central_Time_Zone .
+}
