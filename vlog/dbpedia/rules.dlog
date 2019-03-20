@@ -1,0 +1,5 @@
+HasCategory(A,B) :- DBP(A,<http://purl.org/dc/terms/subject>,B)
+
+Location(A,B) :- DBP(A,<http://dbpedia.org/property/location>,B)
+Timezone(A,B) :- DBP(A,<http://dbpedia.org/property/timezone>,B)
+Region(A,B) :- DBP(A,<http://dbpedia.org/property/region>,B)
