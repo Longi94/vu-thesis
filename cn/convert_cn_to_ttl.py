@@ -13,4 +13,4 @@ with open(args.output, 'w', encoding="utf8") as o:
 
             assertion = line.split(',')
 
-            o.write('<{}> <{}> <{}> .\n'.format(assertion[1], assertion[0], assertion[2]))
+            o.write('<{}> <{}> <{}> .\n'.format(assertion[1][:-1], assertion[0][:-1], assertion[2][:-1]))
