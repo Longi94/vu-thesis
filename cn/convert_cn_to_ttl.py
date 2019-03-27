@@ -13,4 +13,8 @@ with open(args.output, 'w', encoding="utf8") as o:
 
             assertion = line.split(',')
 
+            if not assertion[1].startswith('/c/en/') or not assertion[2].startswith('/c/en/'):
+                # skip non english ones
+                continue
+
             o.write('<{}> <{}> <{}> .\n'.format(assertion[1][:-1], assertion[0][:-1], assertion[2][:-1]))
