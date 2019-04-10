@@ -20,8 +20,13 @@ with open(args.output, 'w', encoding="utf8") as o:
                 # skip non english ones
                 continue
 
-            if assertion[0] == '/r/ExternalURL/' and assertion[2].startswith('/http'):
-                # remove leading slash from links
-                assertion[2] = assertion[2][1:]
+            if assertion[0] == '/r/ExternalURL/':
+
+                if assertion[2].startswith('/http'):
+                    # remove leading slash from links
+                    assertion[2] = assertion[2][1:]
+
+                if assertion[2].startswith('http://wordnet-rdf.princeton.edu/wn31/'):
+                    assertion[2] = assertion[2].replace('/wn31/3', '/id/')
 
             o.write('<{}> <{}> <{}> .\n'.format(assertion[1][:-1], assertion[0][:-1], assertion[2][:-1]))
