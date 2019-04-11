@@ -8,6 +8,8 @@ args = arg_parser.parse_args()
 
 with open(args.output, 'w', encoding="utf8") as o:
     with open(args.input, 'r', encoding="utf8") as f:
+
+        cn_pos_regex = re.compile(r"/c/en/.+/[a-z]/", re.IGNORECASE)
         wordnet_regex = re.compile(r"/wn31/[0-9]", re.IGNORECASE)
 
         for line in f:
@@ -31,5 +33,11 @@ with open(args.output, 'w', encoding="utf8") as o:
 
                 if assertion[2].startswith('http://wordnet-rdf.princeton.edu/wn31/'):
                     assertion[2] = wordnet_regex.sub('/id/', assertion[2])
+
+            if cn_pos_regex.match(assertion[1]):
+                assertion[1] = assertion[1][:-2]
+
+            if cn_pos_regex.match(assertion[2]):
+                assertion[2] = assertion[2][:-2]
 
             o.write('<{}> <{}> <{}> .\n'.format(assertion[1][:-1], assertion[0][:-1], assertion[2][:-1]))
