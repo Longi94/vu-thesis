@@ -1,5 +1,6 @@
 import argparse
 import random
+import json
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--input', '-i', type=str, required=True)
@@ -23,3 +24,6 @@ for line in lines:
 
 for key, value in evaluations.items():
     print('{} {}'.format(key, value / args.count))
+
+with open('{}.score.json' + args.input, 'r') as f:
+    json.dump(evaluations, f)
